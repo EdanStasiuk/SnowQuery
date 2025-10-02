@@ -63,19 +63,26 @@ def generate_sql(question: str, schema_context: dict) -> str:
     return sql
 
 
-def ask(question: str):
+def ask(question: str) -> str:
     """
     Executes the end-to-end process of generating SQL from a question
     and querying Snowflake.
 
     Args:
         question (str): Natural language question to query.
+
+    Returns:
+        str: Combined string containing the generated SQL and query results.
     """
     schema_context = format_schema_context()
     sql = generate_sql(question, schema_context)
-    print("Generated SQL:\n", sql)
+    # print("Generated SQL:\n", sql)
+
     df = run_query(sql)
-    print("Results:\n", df.head())
+    # print("Results:\n", df.head())
+    result_str = f"Generated SQL:\n{sql}\n\nResults:\n{df.head().to_string(index=False)}"
+
+    return result_str
 
 
 if __name__ == "__main__":
