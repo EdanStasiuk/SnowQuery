@@ -5,7 +5,7 @@ An AI-powered assistant that turns natural language into Snowflake queries using
 ## Project directory setup
 
 ```
-snowflake-ai-assistant/
+SnowQuery/
 │── src/
 │ ├── agent.py # Main agent logic (MCP + LLM + orchestration)
 │ ├── snowflake_client.py # Connects & queries Snowflake
@@ -13,7 +13,7 @@ snowflake-ai-assistant/
 │ └── app.py # CLI or Streamlit web interface
 │
 │── requirements.txt # deps (snowflake-connector-python, openai, streamlit, mcp)
-│── .env.example # Snowflake + API credentials
+|–– .env # Snowflake + API credentials (you will need to create this file to run SnowQuery––sorry, credits cost $$$)
 │── README.md
 ```
 
