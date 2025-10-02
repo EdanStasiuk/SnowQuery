@@ -1,6 +1,7 @@
 import os
-import snowflake.connector
+
 import pandas as pd
+import snowflake.connector
 from dotenv import load_dotenv
 
 load_dotenv()
