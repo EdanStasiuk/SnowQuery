@@ -1,10 +1,10 @@
 # SnowQuery
 
-An AI-powered assistant that turns natural language into Snowflake queries using MCP and agentic reasoning.
+An AI-powered assistant that converts natural language into Snowflake SQL queries using MCP and agentic reasoning. Query your Snowflake database effortlessly and visualize results directly in a web interface.
 
 ![SnowQuery Web UI](./images/snowquery-screenshot.png)
 
-## Project directory setup
+## Project Directory Structure
 
 ```
 SnowQuery/
