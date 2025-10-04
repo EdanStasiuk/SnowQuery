@@ -2,3 +2,4 @@ snowflake-connector-python[pandas]
 python-dotenv
 openai
 streamlit
+altair
