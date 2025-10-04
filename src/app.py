@@ -39,7 +39,6 @@ def make_chart(df):
         )
 
     if x_axis and y_axis:
-        # pick chart type properly (use Altair methods, not mark definitions)
         if chart_type == "Bar":
             chart = alt.Chart(df).mark_bar(color="#5890e5")
         elif chart_type == "Line":
