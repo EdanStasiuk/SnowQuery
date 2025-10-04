@@ -1,5 +1,8 @@
 import os
+import time
+from typing import Tuple
 
+import pandas as pd
 from openai import OpenAI
 
 from mcp_context import format_schema_context
@@ -63,20 +66,36 @@ def generate_sql(question: str, schema_context: dict) -> str:
     return sql
 
 
-def ask(question: str):
+def run_query_with_retry(sql: str, retries=3, delay=1):
+    for attempt in range(retries):
+        try:
+            return run_query(sql)
+        except RuntimeError as e:
+            print(f"Attempt {attempt+1} failed: {e}")
+            time.sleep(delay)
+    raise RuntimeError("All retries failed")
+
+
+def ask(question: str) -> Tuple[str, pd.DataFrame]:
     """
     Executes the end-to-end process of generating SQL from a question
     and querying Snowflake.
 
     Args:
         question (str): Natural language question to query.
+
+    Returns:
+        str: Combined string containing the generated SQL and query results.
     """
     schema_context = format_schema_context()
     sql = generate_sql(question, schema_context)
-    print("Generated SQL:\n", sql)
-    df = run_query(sql)
-    print("Results:\n", df.head())
+    df = run_query_with_retry(sql)
+
+    return sql, df
 
 
 if __name__ == "__main__":
-    ask("Show me the top 5 customers by revenue")
+    sql, df = ask("Show me the top 5 customers by revenue")
+    print("Generated SQL:\n", sql)
+    if df is not None:
+        print(df.head())

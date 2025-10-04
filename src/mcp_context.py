@@ -7,13 +7,6 @@ from snowflake_client import run_query
 
 load_dotenv()
 
-"""
-mcp_context.py
-
-Fetches Snowflake schema metadata and formats it into a structured context
-suitable for use with an MCP-based AI agent.
-"""
-
 
 def get_schema_metadata() -> pd.DataFrame:
     """
